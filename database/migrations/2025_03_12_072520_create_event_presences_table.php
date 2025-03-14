@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('event_presences', function (Blueprint $table) {
             $table->id();
+            $table->foreignid('event_id');
+            $table->foreignid('user_id');
             $table->timestamps();
         });
     }

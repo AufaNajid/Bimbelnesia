@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('session_presences', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('activity_id')->constrained('activities')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->boolean('is_present')->default(false);
             $table->timestamps();
         });
     }

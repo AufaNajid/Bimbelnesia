@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('session_generators', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('teacher_id')->constrained('users')->onDelete('cascade');
+            $table->date('date');
+            $table->time('time');
+            $table->string('topic');
             $table->timestamps();
         });
     }

@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('studiys', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('branch_id');
+            $table->string('title');
+            $table->string('color');
             $table->timestamps();
         });
     }

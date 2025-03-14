@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('violations', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id');
+            $table->string('violation');
+            $table->string('punishment');
             $table->timestamps();
         });
     }

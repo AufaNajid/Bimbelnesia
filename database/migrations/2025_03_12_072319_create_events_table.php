@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('events', function (Blueprint $table) {
             $table->id();
+            $table->foreignid('branch_id');
+            $table->string('title');
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

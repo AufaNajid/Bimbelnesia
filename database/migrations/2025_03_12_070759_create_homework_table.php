@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('homework', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id');
+            $table->foreignId('sesi_id');
+            $table->string('title');
+            $table->date('due_date');
+            $table->string('status')
             $table->timestamps();
         });
     }

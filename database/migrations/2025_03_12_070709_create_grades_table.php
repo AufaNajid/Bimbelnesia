@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('grades', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('branch_id');
+            $table->foreignId('grade_tag_id');
+            $table->string('title');
             $table->timestamps();
         });
     }

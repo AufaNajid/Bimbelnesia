@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('plans', function (Blueprint $table) {
             $table->id();
+            $table->foreignid('user_id');
+            $table->string('title');
+            $table->text('description')->nullable();
+            $table->date('date');
             $table->timestamps();
         });
     }

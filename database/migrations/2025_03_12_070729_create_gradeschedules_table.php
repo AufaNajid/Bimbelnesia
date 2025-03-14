@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('gradeschedules', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('grade_id')->constrained('grades')->onDelete('cascade');
+            $table->dateTime('repeat_at');
             $table->timestamps();
         });
     }

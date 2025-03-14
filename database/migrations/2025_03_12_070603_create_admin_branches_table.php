@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('admin_branches', function (Blueprint $table) {
             $table->id();
+            $table->string('username')->unique();
+            $table->string('password');
             $table->timestamps();
         });
     }
