@@ -6,5 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class AdminBranch extends Model
 {
-    //
+    protected $fillable = [
+        'title'
+    ];
 }
