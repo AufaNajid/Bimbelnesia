@@ -27,7 +27,7 @@ class HomeworkController extends Controller
 
             $homework = new Homework();
             $homework->sesi_id = $validatedData['nama_lokasi'];
-            $homework->user_id = $validatedData['desc_lokasi'];
+            $homework->user_id = $user->id;
             $homework->title = $validatedData['title'];
             $homework->save();
 
