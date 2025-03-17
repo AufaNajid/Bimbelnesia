@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('sesi_id');
             $table->string('title');
             $table->date('due_date');
-            $table->string('status')
+            $table->string('status');
             $table->timestamps();
         });
     }
