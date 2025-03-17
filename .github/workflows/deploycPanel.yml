@@ -1,17 +1,18 @@
-name: 🚀 Deploy website on push
+name: Pusblish website to cPanel
 on:
   push:
     branches:
       - main
 jobs:
-  web-deploy:
-    name: 🎉 Deploy
+ FTP-Deploy-Action:
+    name: FTP-Deploy-Action
     runs-on: ubuntu-latest
     steps:
-      - name: 🚚 Get latest code
-        uses: actions/checkout@v3
-      - name: 📂 Sync files
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      - uses: actions/checkout@v2.1.0
+        with:
+         fetch-depth: 2
+      - name: FTP-Deploy-Action
+        uses: SamKirkland/FTP-Deploy-Action@v3.1.1
         with:
           server: ${{ secrets.ftp_server }}
           username: ${{ secrets.ftp_username }}
