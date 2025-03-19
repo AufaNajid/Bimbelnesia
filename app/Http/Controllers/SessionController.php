@@ -13,18 +13,40 @@ class SessionController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'schedule_id' => 'required|exists:grade_schedules,grade_schedule_id',
+        $validatedData = $request->validate([
+            'schedule_id' => 'required|exists:grade_schedules,id',
             'study_id' => 'required|exists:studies,id',
             'teacher_id' => 'required|exists:users,id',
             'date' => 'required|date',
-            'time' => 'required'
+            'time' => 'required|string'
         ]);
-
-        $session = Session::create($request->all());
-        return response()->json($session, 201);
+    
+        // Cek apakah teacher_id valid
+        $teacher = User::find($validatedData['teacher_id']);
+        if (!$teacher) {
+            return response()->json(['message' => 'Invalid teacher ID'], 404);
+        }
+    
+        // Cek apakah schedule_id valid
+        $schedule = GradeSchedule::find($validatedData['schedule_id']);
+        if (!$schedule) {
+            return response()->json(['message' => 'Invalid schedule ID'], 404);
+        }
+    
+        $session = new Session();
+        $session->schedule_id = $schedule;
+        $session->study_id = $validatedData['study_id'];
+        $session->teacher_id = $teacher;
+        $session->date = $validatedData['date'];
+        $session->time = $validatedData['time'];
+        $session->save();
+    
+        return response()->json([
+            'message' => 'Session added successfully',
+            'data' => $session
+        ], 201);
     }
-
+    
     public function show($id)
     {
         return response()->json(Session::with(['schedule', 'study', 'teacher'])->findOrFail($id));

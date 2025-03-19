@@ -26,7 +26,6 @@ class AuthController extends Controller
         return response()->json(['message' => ucfirst($request->role) . ' registered successfully'], 201);
     }
 
-    // Login for all roles
     public function login(Request $request)
     {
         $request->validate([
